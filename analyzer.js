@@ -32,6 +32,11 @@ if(process.argv[2] === "remove" && process.argv[3]){
     return;
 }
 
+if(process.argv[2] && process.argv[2].indexOf("--format=") == 0) {
+    printSites(process.argv[2].replace(/^--format=/,""));
+    return;
+}
+
 
 printSites();
 
@@ -77,7 +82,7 @@ function removeSite(sitename){
     }
 }
 
-function printSites(){
+function printSites(format){
     if(!_SITES.length){
         console.log("No sites found. Add sites with: node analyzer NAME PATH");
     }
@@ -89,7 +94,10 @@ function printSites(){
 
         if(process.argv.indexOf("--table") > 1){
             couttable.addPage(page);
-        }else {
+        }else if(format) {
+            var coutformat = ConsoleOutput.ConsoleOutputFormat(format);
+            coutformat.print(page);
+        }else{
             cout.print(page);
         }
     }
