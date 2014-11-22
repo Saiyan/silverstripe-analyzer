@@ -84,7 +84,7 @@ function removeSite(sitename){
 
 function printSites(format){
     if(!_SITES.length){
-        console.log("No sites found. Add sites with: node analyzer NAME PATH");
+        console.log("No sites found. Add sites with: node analyzer add NAME PATH");
     }
 
     for (var i in _SITES) {
