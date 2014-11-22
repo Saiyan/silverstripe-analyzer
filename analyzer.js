@@ -3,7 +3,7 @@ var ConsoleOutput = require("./lib/ConsoleOutput.js");
 var fs = require("fs");
 var _SITES;
 var __CFGFILE = "sites.json";
-var cout = ConsoleOutput.ConsoleOutput();
+var cout = ConsoleOutput.ConsoleOutputFormat();
 var couttable = ConsoleOutput.ConsoleOutputTable();
 
 if(process.argv.indexOf('--debug') > 1)
