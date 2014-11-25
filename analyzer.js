@@ -3,8 +3,6 @@ var ConsoleOutput = require("./lib/ConsoleOutput.js");
 var fs = require("fs");
 var _SITES;
 var __CFGFILE = "sites.json";
-var cout = ConsoleOutput.ConsoleOutputFormat();
-var couttable = ConsoleOutput.ConsoleOutputTable();
 
 if(process.argv.indexOf('--debug') > 1)
     process.__DEBUG = true;
@@ -33,14 +31,7 @@ if(process.argv[2] === "remove" && process.argv[3]){
 }
 
 filterSites();
-
-if(process.argv[2] && process.argv[2].indexOf("--format=") == 0) {
-    printSites(process.argv[2].replace(/^--format=/,""));
-    return;
-}
-
-
-printSites();
+printSites(findFormat());
 
 
 /***********************************************************************/
@@ -95,17 +86,27 @@ function printSites(format){
         if(!page)continue;
 
         if(process.argv.indexOf("--table") > 1){
+            var couttable = ConsoleOutput.ConsoleOutputTable();
             couttable.addPage(page);
-        }else if(format) {
+        }else {
             var coutformat = ConsoleOutput.ConsoleOutputFormat(format);
             coutformat.print(page);
-        }else{
-            cout.print(page);
         }
     }
 
     if(process.argv.indexOf("--table") > 1)
         couttable.print();
+}
+
+function findFormat(){
+    var format;
+    process.argv.forEach(function(e){
+        var rex = /^--format=/;
+        if(e.search(rex) > -1) {
+            format = e.replace(rex,"");
+        }
+    });
+    return format;
 }
 
 function filterSites(){
