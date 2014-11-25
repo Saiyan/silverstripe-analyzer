@@ -32,6 +32,8 @@ if(process.argv[2] === "remove" && process.argv[3]){
     return;
 }
 
+filterSites();
+
 if(process.argv[2] && process.argv[2].indexOf("--format=") == 0) {
     printSites(process.argv[2].replace(/^--format=/,""));
     return;
@@ -104,4 +106,18 @@ function printSites(format){
 
     if(process.argv.indexOf("--table") > 1)
         couttable.print();
+}
+
+function filterSites(){
+    process.argv.forEach(function(e){
+        if(e.search(/^--filter-name=/) > -1) {
+            var filterName = e.replace(/^--filter-name=/,"");
+            for (var i in _SITES) {
+                if(_SITES[i].name.search(filterName) == -1){
+                    delete _SITES[i];
+                }
+            }
+        }
+
+    });
 }
