@@ -79,6 +79,7 @@ function printSites(format){
     if(!_SITES.length){
         console.log("No sites found. Add sites with: node analyzer add NAME PATH");
     }
+    var couttable = ConsoleOutput.ConsoleOutputTable();
 
     for (var i in _SITES) {
         var site = _SITES[i];
@@ -86,7 +87,6 @@ function printSites(format){
         if(!page)continue;
 
         if(process.argv.indexOf("--table") > 1){
-            var couttable = ConsoleOutput.ConsoleOutputTable();
             couttable.addPage(page);
         }else {
             var coutformat = ConsoleOutput.ConsoleOutputFormat(format);
