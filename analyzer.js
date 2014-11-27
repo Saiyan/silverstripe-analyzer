@@ -79,14 +79,19 @@ function printSites(format){
     if(!_SITES.length){
         console.log("No sites found. Add sites with: node analyzer add NAME PATH");
     }
-    var couttable = ConsoleOutput.ConsoleOutputTable();
+    if(process.argv.indexOf("--table") > 1)
+        var isTable = true;
+
+    if(isTable) {
+        var couttable = ConsoleOutput.ConsoleOutputTable(findColumns());
+    }
 
     for (var i in _SITES) {
         var site = _SITES[i];
         var page = sspage.create(site);
         if(!page)continue;
 
-        if(process.argv.indexOf("--table") > 1){
+        if(isTable){
             couttable.addPage(page);
         }else {
             var coutformat = ConsoleOutput.ConsoleOutputFormat(format);
@@ -94,8 +99,19 @@ function printSites(format){
         }
     }
 
-    if(process.argv.indexOf("--table") > 1)
+    if(isTable)
         couttable.print();
+}
+
+function findColumns(){
+    var format;
+    process.argv.forEach(function(e){
+        var rex = /^--table-columns=/;
+        if(e.search(rex) > -1) {
+            format = e.replace(rex,"");
+        }
+    });
+    return format;
 }
 
 function findFormat(){
