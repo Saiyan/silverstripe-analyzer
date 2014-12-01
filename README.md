@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Saiyan/silverstripe-analyzer.svg?branch=master)](https://travis-ci.org/Saiyan/silverstripe-analyzer)
+
 ## Requirements
 
 - cli-table 0.3.1
