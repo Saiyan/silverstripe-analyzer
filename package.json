@@ -1,25 +1,33 @@
 {
-  "name": "silverstripe-analyzer",
-  "version": "0.0.1",
-  "main": "./analyzer.js",
-  "author": {
-    "name": "saiyan",
-    "email": "saiyan@cssai.eu"
-  },
-  "dependencies": {
-    "cli-table": "^0.3.1",
-    "colors": "^1.0.3",
-    "js-yaml": "^3.2.3"
-  },
-  "keywords": [],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Saiyan/silverstripe-analyzer.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Saiyan/silverstripe-analyzer/issues"
-  },
-  "license": {
-    "type": "mit"
-  }
+    "name": "silverstripe-analyzer",
+    "version": "0.0.1",
+    "main": "./analyzer.js",
+    "author": {
+        "name": "saiyan",
+        "email": "saiyan@cssai.eu"
+    },
+    "dependencies": {
+        "cli-table": "^0.3.1",
+        "colors": "^1.0.3",
+        "js-yaml": "^3.2.3"
+    },
+    "keywords": [
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Saiyan/silverstripe-analyzer.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Saiyan/silverstripe-analyzer/issues"
+    },
+    "license": {
+        "type": "mit"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "devDependencies": {
+        "mocha": "~1.21.4",
+        "assert": "*"
+    }
 }
