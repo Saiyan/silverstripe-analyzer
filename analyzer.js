@@ -50,7 +50,7 @@ function addSite(sitename,projectpath){
             name: sitename,
             path: projectpath
         });
-        fs.writeFileSync(__CFGFILE, JSON.stringify(_SITES));
+        fs.writeFileSync(__CFGFILE, JSON.stringify(_SITES,null,4));
         console.log("Site added: "+sitename);
     }else{
         console.log("Site with that name already exists: "+sitename);
@@ -68,7 +68,7 @@ function removeSite(sitename){
     }
     if(siteindex) {
         _SITES.splice(siteindex,siteindex+1);
-        fs.writeFileSync(__CFGFILE, JSON.stringify(_SITES));
+        fs.writeFileSync(__CFGFILE, JSON.stringify(_SITES,null,4));
         console.log("Site removed: "+sitename);
     }else{
         console.log("Site with that did not exist: "+sitename);
