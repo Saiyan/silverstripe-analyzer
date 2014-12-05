@@ -1,6 +1,7 @@
-
 var util = require("./lib/util");
 var fs = require("fs");
+var path = require("path");
+global.appRoot = path.resolve(__dirname);
 
 if(!util) return;
 
@@ -8,7 +9,7 @@ if(process.argv.indexOf('--debug') > 1)
     process.__DEBUG = true;
 
 if(!fs.existsSync(util.getConfigPath())){
-    fs.writeFileSync(util.getConfigPath(),'[]');
+    util.writeFileContent(util.getConfigPath(),'[]');
 }
 
 if(process.argv[2] === "add") {
